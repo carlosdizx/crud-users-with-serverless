@@ -1,0 +1,32 @@
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "description": "Course Platzi",
+  "main": "greeting.ts",
+  "scripts": {
+    "lambda:dev": "rimraf .build && serverless offline start",
+    "deploy": "rimraf .serverless && serverless deploy --verbose"
+  },
+  "author": "Carlos Ernesto Diaz Basante",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.321.1"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.114",
+    "@types/node": "^16.18.25",
+    "rimraf": "^5.0.0",
+    "serverless-offline": "^12.0.4",
+    "serverless-plugin-typescript": "^2.1.4",
+    "typescript": "^5.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlosdizx/hola-mundo-serverless.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carlosdizx/hola-mundo-serverless/issues"
+  },
+  "homepage": "https://github.com/carlosdizx/hola-mundo-serverless#readme"
+}

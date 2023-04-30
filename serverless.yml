@@ -1,0 +1,16 @@
+service: hello-world
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
+functions:
+  hello-world:
+    handler: greeting.hello
+    events:
+      - http:
+          path: hello
+          method: GET
