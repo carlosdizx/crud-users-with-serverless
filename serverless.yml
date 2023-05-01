@@ -41,9 +41,15 @@ resources:
           WriteCapacityUnits: 1
 
 functions:
-  get-users:
+  find-user-by-id:
     handler: src/functions/users/find-by-id.handler
     events:
       - http:
           path: users/{id}
           method: GET
+  create-user:
+    handler: src/functions/users/create.handler
+    events:
+      - http:
+          path: users
+          method: POST
