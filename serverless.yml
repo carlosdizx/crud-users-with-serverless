@@ -39,5 +39,5 @@ functions:
     handler: getUsers.handler
     events:
       - http:
-          path: users
+          path: users/{id}
           method: GET
