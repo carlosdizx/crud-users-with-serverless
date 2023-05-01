@@ -42,7 +42,7 @@ resources:
 
 functions:
   get-users:
-    handler: getUsers.handler
+    handler: src/fuctions/getUsers.handler
     events:
       - http:
           path: users/{id}
