@@ -3,6 +3,12 @@ service: crud-users
 provider:
   name: aws
   runtime: nodejs18.x
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action: "dynamodb:*"
+          Resource: arn:aws:dynamodb:us-east-1:184440761998:table/users
 
 plugins:
   - serverless-offline
