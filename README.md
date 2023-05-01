@@ -1,9 +1,9 @@
-# Hello world with Serverless and Typescript
+# Crud with serverless framework, dynamodb and typescript
 
 ## Steps to deploy the project
 1. Clone the template project with the following command:
 ``` 
-serverless create --path hello-world --template-url https://github.com/carlosdizx/hola-mundo-serverless
+serverless create --path hello-world --template-url https://github.com/carlosdizx/crud-users-with-serverless
 ```
 2. Install project dependencies with ``` npm install ```
 3. Configure AWS credentials with the following command:
