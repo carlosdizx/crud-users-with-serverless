@@ -15,6 +15,12 @@ plugins:
   - serverless-plugin-typescript
   - serverless-dynamodb-local
 
+package:
+  individually: true
+  patterns:
+    - "!dynamodb"
+    - "!node_modules"
+
 custom:
   dynamodb:
     stages:
