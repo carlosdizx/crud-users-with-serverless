@@ -19,7 +19,6 @@ package:
   individually: true
   patterns:
     - "!dynamodb"
-    - "!node_modules"
 
 custom:
   dynamodb:
