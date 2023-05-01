@@ -2,7 +2,6 @@
   "name": "hello-world",
   "version": "1.0.0",
   "description": "Course Platzi",
-  "main": "greeting.ts",
   "scripts": {
     "lambda:dev": "rimraf .build && serverless offline start",
     "deploy": "rimraf .serverless && serverless deploy --verbose"
@@ -11,7 +10,8 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.321.1"
+    "@aws-sdk/client-s3": "^3.321.1",
+    "serverless-dynamodb-local": "^0.2.40"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.114",
