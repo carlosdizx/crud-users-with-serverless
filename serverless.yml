@@ -1,4 +1,4 @@
-service: hello-world
+service: crud-users
 
 provider:
   name: aws
@@ -8,9 +8,9 @@ plugins:
   - serverless-offline
   - serverless-plugin-typescript
 functions:
-  hello-world:
+  get-users:
     handler: greeting.hello
     events:
       - http:
-          path: hello
+          path: users
           method: GET
