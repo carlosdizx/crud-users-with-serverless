@@ -46,8 +46,8 @@ resources:
           WriteCapacityUnits: 1
 
 functions:
-  find-user-by-id:
-    handler: src/functions/users/find-by-id.handler
+  find-user:
+    handler: src/functions/users/find.handler
     events:
       - http:
           path: users/{id}
@@ -64,3 +64,9 @@ functions:
       - http:
           path: users/{id}
           method: PATCH
+  delete-user:
+    handler: src/functions/users/delete.handler
+    events:
+      - http:
+          path: users/{id}
+          method: DELETE

@@ -1,8 +1,6 @@
 import {Handler, APIGatewayProxyEvent, Context} from 'aws-lambda';
 import AWS from "aws-sdk";
 
-const {randomUUID} = require("crypto");
-
 const dynamoDBClientParams = process.env.IS_OFFLINE ?
     {
         region: 'localhost',
@@ -14,22 +12,22 @@ const dynamoDBClientParams = process.env.IS_OFFLINE ?
 
 const dynamodb: AWS.DynamoDB.DocumentClient = new AWS.DynamoDB.DocumentClient(dynamoDBClientParams);
 export const handler: Handler = async (event: APIGatewayProxyEvent, context: Context) => {
+    const {id: userId}: any = event.pathParameters;
 
-    if (event.body != null) {
-        const body: any = JSON.parse(event.body);
-        const id = randomUUID();
-        const bodyNew = body;
+    const params = {
+        ExpressionAttributeValues: {':pk': userId},
+        KeyConditionExpression: 'pk = :pk',
+        TableName: 'users'
+    };
+
+    const result = await dynamodb.query(params).promise();
+    if(result.Count === 1) {
         const params = {
             TableName: 'users',
-            Item: {...body, pk: id}
+            Key: {pk: userId},
         };
-
-        await dynamodb.put(params).promise();
-        return {
-            "statusCode": 201, "body": JSON.stringify( params.Item)
-        }
+        const result: any = (await dynamodb.delete(params).promise());
+        return {"statusCode": 200, "body": JSON.stringify({msg: "User deleted!"})};
     }
-    return {
-        "statusCode": 400, "body": JSON.stringify({msg: "Body is required"})
-    }
+    return {"statusCode": 404, "body": JSON.stringify({msg: "User found not exist!"})};
 }
