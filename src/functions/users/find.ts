@@ -23,6 +23,6 @@ export const handler: Handler = async (event: APIGatewayProxyEvent, context: Con
 
     const result = await dynamodb.query(params).promise();
     return {
-        "statusCode": 200, "body": JSON.stringify({user: result})
+        "statusCode": 200, "body": JSON.stringify(result)
     }
 }
