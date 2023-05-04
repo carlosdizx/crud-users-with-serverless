@@ -1,5 +1,5 @@
 {
-  "name": "hello-world",
+  "name": "crud-serverless-and-typescript",
   "version": "1.0.0",
   "description": "Course Platzi",
   "scripts": {
@@ -23,10 +23,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/carlosdizx/hola-mundo-serverless.git"
+    "url": "git+https://github.com/carlosdizx/crud-users-with-serverless.git"
   },
   "bugs": {
-    "url": "https://github.com/carlosdizx/hola-mundo-serverless/issues"
+    "url": "https://github.com/carlosdizx/crud-users-with-serverless/issues"
   },
-  "homepage": "https://github.com/carlosdizx/hola-mundo-serverless#readme"
+  "homepage": "https://github.com/carlosdizx/crud-users-with-serverless#readme"
 }
