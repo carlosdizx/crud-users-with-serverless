@@ -16,9 +16,8 @@ plugins:
   - serverless-dynamodb-local
 
 package:
-  individually: true
-  patterns:
-    - "!dynamodb"
+  exclude:
+    - '.dynamodb'
 
 custom:
   dynamodb:
