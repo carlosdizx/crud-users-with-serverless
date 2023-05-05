@@ -11,8 +11,8 @@ provider:
           Resource: arn:aws:dynamodb:us-east-1:184440761998:table/users
 
 plugins:
+  - serverless-esbuild
   - serverless-offline
-  - serverless-plugin-typescript
   - serverless-dynamodb-local
 
 package:
@@ -20,6 +20,9 @@ package:
     - '.dynamodb'
 
 custom:
+  esbuild:
+    bundle: true
+    minify: true
   dynamodb:
     stages:
       - dev

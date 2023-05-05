@@ -17,9 +17,10 @@
   "devDependencies": {
     "@types/aws-lambda": "^8.10.114",
     "@types/node": "^16.18.25",
+    "esbuild": "^0.17.18",
     "rimraf": "^5.0.0",
+    "serverless-esbuild": "^1.44.0",
     "serverless-offline": "^12.0.4",
-    "serverless-plugin-typescript": "^2.1.4",
     "typescript": "^5.0.4"
   },
   "repository": {
