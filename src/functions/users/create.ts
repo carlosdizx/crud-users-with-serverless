@@ -25,11 +25,7 @@ export const handler: Handler = async (event: APIGatewayProxyEvent, context: Con
         };
 
         await dynamodb.put(params).promise();
-        return {
-            "statusCode": 201, "body": JSON.stringify( params.Item)
-        }
+        return {"statusCode": 201, "body": JSON.stringify( params.Item)}
     }
-    return {
-        "statusCode": 400, "body": JSON.stringify({msg: "Body is required"})
-    }
+    return {"statusCode": 400, "body": JSON.stringify({msg: "Body is required"})}
 }

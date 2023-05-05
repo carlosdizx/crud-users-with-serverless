@@ -26,7 +26,7 @@ export const handler: Handler = async (event: APIGatewayProxyEvent, context: Con
             TableName: 'users',
             Key: {pk: userId},
         };
-        const result: any = (await dynamodb.delete(params).promise());
+        await dynamodb.delete(params).promise();
         return {"statusCode": 200, "body": JSON.stringify({msg: "User deleted!"})};
     }
     return {"statusCode": 404, "body": JSON.stringify({msg: "User found not exist!"})};
