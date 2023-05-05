@@ -18,7 +18,7 @@ plugins:
 package:
   individually: true
   patterns:
-    - "!dynamodb"
+    - "!*/**"
 
 custom:
   dynamodb:
@@ -48,24 +48,36 @@ resources:
 functions:
   find-user:
     handler: src/functions/users/find.handler
+    package:
+      patterns:
+        - "src/functions/users/create.js"
     events:
       - http:
           path: users/{id}
           method: GET
   create-user:
     handler: src/functions/users/create.handler
+    package:
+      patterns:
+        - "src/functions/users/create.js"
     events:
       - http:
           path: users
           method: POST
   update-user:
     handler: src/functions/users/update.handler
+    package:
+      patterns:
+        - "src/functions/users/update.js"
     events:
       - http:
           path: users/{id}
           method: PATCH
   delete-user:
     handler: src/functions/users/delete.handler
+    package:
+      patterns:
+        - "src/functions/users/delete.js"
     events:
       - http:
           path: users/{id}
