@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"No test specified\"",
     "lambda:dev": "rimraf .build && serverless offline start",
-    "deploy": "rimraf .serverless && serverless deploy --verbose"
+    "deploy": "rimraf .serverless && serverless deploy --verbose",
+    "format": "prettier --write \"src/**/**/*.ts\" \"test/**/**/*.ts\""
   },
   "author": "Carlos Ernesto Diaz Basante",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "@types/aws-lambda": "^8.10.114",
     "@types/node": "^16.18.25",
     "esbuild": "^0.17.18",
+    "prettier": "^2.8.8",
     "rimraf": "^5.0.0",
     "serverless-esbuild": "^1.44.0",
     "serverless-offline": "^12.0.4",
