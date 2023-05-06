@@ -1,4 +1,4 @@
-const { randomUUID } = require("crypto");
+import { randomUUID } from "crypto";
 import dynamodb from "../utils/Dynamodb";
 
 export default class UserService {

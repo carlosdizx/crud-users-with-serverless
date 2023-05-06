@@ -8,5 +8,5 @@ export const handler: APIGatewayProxyHandler = async (event) => {
     const result = await UserService.create(body);
     return responseObject(201, result);
   }
-  return responseObject(201, "Body is required");
+  return responseObject(201, {message: "Body is required"});
 };
