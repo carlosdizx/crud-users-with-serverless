@@ -42,4 +42,16 @@ export default class UserService {
         return responseObject(404, {message: "User not found!", userId});
     }
 
+    public static delete = async (userId: string) => {
+        const userFound = await UserService.findById(userId);
+        if (userFound.statusCode === 200){
+            const params = {
+                TableName: "users",
+                Key: { pk: userId },
+            };
+            await dynamodb.delete(params).promise();
+            return responseObject(204, null);
+        }
+        return responseObject(404, {message: "User not found or already deleted!", userId});
+    }
 }
