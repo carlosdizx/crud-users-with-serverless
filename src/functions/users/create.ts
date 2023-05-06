@@ -6,7 +6,11 @@ const { randomUUID } = require("crypto");
 export const handler: APIGatewayProxyHandler = async (event) => {
   if (typeof event.body === 'string') {
     const body: any = JSON.parse(event.body);
-    await UserService.create(body);
+    const result = await UserService.create(body);
+    return {
+      statusCode: 201,
+      body: JSON.stringify(result),
+    };
   }
   return {
     statusCode: 400,
