@@ -1,18 +1,5 @@
 import { APIGatewayProxyHandler } from "aws-lambda";
-import AWS from "aws-sdk";
-
-const dynamoDBClientParams = process.env.IS_OFFLINE
-  ? {
-      region: "localhost",
-      endpoint: "http://localhost:8000",
-      accessKeyId: "DEFAULT_ACCESS_KEY",
-      secretAccessKey: "DEFAULT_SECRET",
-    }
-  : {};
-
-const dynamodb: AWS.DynamoDB.DocumentClient = new AWS.DynamoDB.DocumentClient(
-  dynamoDBClientParams
-);
+import dynamodb from "../../utils/Dynamodb";
 export const handler: APIGatewayProxyHandler = async (event) => {
   const { id: userId }: any = event.pathParameters;
 

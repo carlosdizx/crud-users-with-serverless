@@ -1,18 +1,8 @@
 import { APIGatewayProxyHandler } from "aws-lambda";
-import AWS from "aws-sdk";
+import dynamodb from "../../utils/Dynamodb";
 
 const { randomUUID } = require("crypto");
 
-const dynamoDBClientParams = process.env.IS_OFFLINE
-  ? {
-      region: "localhost",
-      endpoint: "http://localhost:8000",
-      accessKeyId: "DEFAULT_ACCESS_KEY",
-      secretAccessKey: "DEFAULT_SECRET",
-    }
-  : {};
-
-const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoDBClientParams);
 export const handler: APIGatewayProxyHandler = async (event) => {
   if (event.body != null) {
     const body: any = JSON.parse(event.body);
