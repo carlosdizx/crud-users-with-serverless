@@ -1,23 +1,12 @@
 import { APIGatewayProxyHandler } from "aws-lambda";
-import dynamodb from "../../utils/Dynamodb";
+import UserService from "../../services/user.service";
 
 const { randomUUID } = require("crypto");
 
 export const handler: APIGatewayProxyHandler = async (event) => {
-  if (event.body != null) {
+  if (typeof event.body === 'string') {
     const body: any = JSON.parse(event.body);
-    const id = randomUUID();
-    const bodyNew = body;
-    const params = {
-      TableName: "users",
-      Item: { ...body, pk: id },
-    };
-
-    await dynamodb.put(params).promise();
-    return {
-      statusCode: 201,
-      body: JSON.stringify(params.Item),
-    };
+    await UserService.create(body);
   }
   return {
     statusCode: 400,
