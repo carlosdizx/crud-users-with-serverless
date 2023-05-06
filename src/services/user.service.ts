@@ -19,12 +19,15 @@ export default class UserService {
             KeyConditionExpression: "pk = :pk",
             TableName: "users",
         };
-        return await dynamodb.query(params).promise();
+        const result = await dynamodb.query(params).promise();
+        if (result.Count === 1)
+            return responseObject(200, result.Items && result.Items[0]);
+        return responseObject(404, {message: "User not found!"});
     }
 
     public static update = async (data: any, userId: string) => {
         const userFound = await UserService.findById(userId);
-        if (userFound.Count === 1){
+        if (userFound.statusCode === 200){
             const params = {
                 TableName: "users",
                 Key: { pk: userId },
@@ -33,8 +36,8 @@ export default class UserService {
                 ExpressionAttributeValues: { ":name": data.name },
                 ReturnValues: "ALL_NEW",
             };
-            const result: any = await dynamodb.update(params).promise();
-            return responseObject(200, {message: "User updated!", result});
+            const result = await dynamodb.update(params).promise();
+            return responseObject(200, result.Attributes );
         }
         return responseObject(404, {message: "User not found!", userId});
     }
