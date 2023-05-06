@@ -1,4 +1,4 @@
-import { Handler, APIGatewayProxyEvent, Context } from "aws-lambda";
+import { APIGatewayProxyHandler } from "aws-lambda";
 import AWS from "aws-sdk";
 
 const dynamoDBClientParams = process.env.IS_OFFLINE
@@ -13,10 +13,7 @@ const dynamoDBClientParams = process.env.IS_OFFLINE
 const dynamodb: AWS.DynamoDB.DocumentClient = new AWS.DynamoDB.DocumentClient(
   dynamoDBClientParams
 );
-export const handler: Handler = async (
-  event: APIGatewayProxyEvent,
-  context: Context
-) => {
+export const handler: APIGatewayProxyHandler = async (event) => {
   const { id: userId }: any = event.pathParameters;
 
   const params = {
