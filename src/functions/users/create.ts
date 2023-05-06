@@ -1,4 +1,4 @@
-import {Handler, APIGatewayProxyEvent, Context} from 'aws-lambda';
+import {Handler, APIGatewayProxyHandler , Context} from 'aws-lambda';
 import AWS from "aws-sdk";
 
 const {randomUUID} = require("crypto");
@@ -13,7 +13,7 @@ const dynamoDBClientParams = process.env.IS_OFFLINE ?
     {};
 
 const dynamodb: AWS.DynamoDB.DocumentClient = new AWS.DynamoDB.DocumentClient(dynamoDBClientParams);
-export const handler: Handler = async (event: APIGatewayProxyEvent, context: Context) => {
+export const handler: APIGatewayProxyHandler = async (event) => {
 
     if (event.body != null) {
         const body: any = JSON.parse(event.body);
