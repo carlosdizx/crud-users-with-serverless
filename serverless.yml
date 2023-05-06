@@ -2,7 +2,7 @@ service: crud-users
 
 provider:
   name: aws
-  runtime: nodejs18.x
+  runtime: nodejs16.x
   iam:
     role:
       statements:
@@ -11,15 +11,19 @@ provider:
           Resource: arn:aws:dynamodb:us-east-1:184440761998:table/users
 
 plugins:
+  - serverless-esbuild
   - serverless-offline
-  - serverless-plugin-typescript
   - serverless-dynamodb-local
 
-package:
-  exclude:
-    - '.dynamodb'
 
 custom:
+  esbuild:
+    minify: true
+    external:
+      - aws-sdk
+    watch:
+      pattern: [ './index.ts', 'src/**/*.ts' ]
+      ignore: [ '.serverless/**/*', '.build' ]
   dynamodb:
     stages:
       - dev
