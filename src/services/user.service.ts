@@ -1,4 +1,4 @@
-import { randomUUID } from "crypto";
+import {randomUUID} from "crypto";
 import dynamodb from "../utils/Dynamodb";
 
 export default class UserService {
@@ -11,4 +11,14 @@ export default class UserService {
         await dynamodb.put(params).promise();
         return params.Item;
     }
+
+    public static findById = async (userId: string) => {
+        const params = {
+            ExpressionAttributeValues: { ":pk": userId },
+            KeyConditionExpression: "pk = :pk",
+            TableName: "users",
+        };
+        return await dynamodb.query(params).promise();
+    }
+
 }
