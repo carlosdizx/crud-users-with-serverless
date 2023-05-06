@@ -1,36 +1,11 @@
 import { APIGatewayProxyHandler } from "aws-lambda";
-import AWS from "aws-sdk";
+import UserService from "../../services/user.service";
+import responseObject from "../../utils/Response";
 
-const { randomUUID } = require("crypto");
-
-const dynamoDBClientParams = process.env.IS_OFFLINE
-  ? {
-      region: "localhost",
-      endpoint: "http://localhost:8000",
-      accessKeyId: "DEFAULT_ACCESS_KEY",
-      secretAccessKey: "DEFAULT_SECRET",
-    }
-  : {};
-
-const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoDBClientParams);
 export const handler: APIGatewayProxyHandler = async (event) => {
-  if (event.body != null) {
+  if (typeof event.body === 'string') {
     const body: any = JSON.parse(event.body);
-    const id = randomUUID();
-    const bodyNew = body;
-    const params = {
-      TableName: "users",
-      Item: { ...body, pk: id },
-    };
-
-    await dynamodb.put(params).promise();
-    return {
-      statusCode: 201,
-      body: JSON.stringify(params.Item),
-    };
+    return await UserService.create(body);
   }
-  return {
-    statusCode: 400,
-    body: JSON.stringify({ msg: "Body is required" }),
-  };
+  return responseObject(201, {message: "Body is required"});
 };
